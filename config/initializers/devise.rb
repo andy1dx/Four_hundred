@@ -254,7 +254,7 @@ Devise.setup do |config|
   # config.navigational_formats = ['*/*', :html]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
-  config.sign_out_via = :delete
+  config.sign_out_via = :get
 
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
@@ -296,4 +296,12 @@ Devise.setup do |config|
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
+
+  Devise.setup do |config|
+    # ...
+  
+    config.omniauth :facebook, '1059014730840429', 'e34a50bd3250975452e55a681f1f6c25', callback_url: "http://localhost:3000/users/auth/facebook/callback"
+    config.omniauth :twitter, 'API key', 'API secret'
+  end
+  
 end
