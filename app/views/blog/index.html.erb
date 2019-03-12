@@ -1,0 +1,40 @@
+    <%= render "elements/signinheader" %>
+    <div class="container theme-showcase" role="main">
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="row">
+        <div class="col-sm-4 col-md-4 col-xs-12">
+            <%= image_tag("logo.png", :class => "img-responsive") %>
+        </div>
+        <div class="col-sm-8 col-md-8 col-xs-12">
+            <%= form_for :blog, url: blog_index_path do |f| %>   
+                <% if @success != nil %>                
+                    <% if @success == true %>
+                        <div class="alert alert-success">Update Sucess</div>            
+                    <% end %>
+                <% end %>
+                <% @blog.errors.full_messages.each do |msg| %>
+                    <div class="alert alert-danger"><%= msg %></div>
+                <% end %>                
+                <p>
+                    <%= f.label :title %><br>
+                    <%= f.text_field(:title, {:class => "form-control"}) %>
+                </p>
+                <p>
+                    <%= f.label :description %><br>
+                    <%= f.text_area(:description, {:class => "form-control"}) %>
+                </p>
+                <p>
+                    <%= f.label :url %><br>
+                    <%= f.text_field(:url, {:class => "form-control"}) %>
+                </p>
+                <p>
+                    <%= f.label :username %><br>
+                    <%= f.text_field(:username, {:class => "form-control"}) %>
+                </p>
+                <p>
+                    <%= f.submit "Submit" , :class => 'btn btn-primary'  %>
+                </p>
+            <% end %>
+        </div>
+    </div>
+</div>  

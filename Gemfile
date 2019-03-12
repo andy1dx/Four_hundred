@@ -65,4 +65,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #adding umniauth for twitter and facebook
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
+gem 'wysiwyg-rails'
+gem 'font-awesome-sass', '~> 5.6.1'
 
