@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :comments
     end
   end
+  post 'avatar', to: 'blog#avatar', as: 'save_avatar'
   get '/public/:blog_id' , to: 'public#index'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
