@@ -4,6 +4,7 @@ class BlogController < ApplicationController
             @check = Blog.find_by(user_id: current_user.id)
             if @check != nil
                 @blog = @check
+                @articles = Article.where("blog_id = #{@blog.id}").order(:created_at).limit(10)
             else
                 @blog = Blog.new
             end
@@ -35,6 +36,8 @@ class BlogController < ApplicationController
             end    
         end
     end
+
+
     
     private def blog_params
         params.require(:blog).permit(:title, :description, :url, :username)
@@ -42,8 +45,8 @@ class BlogController < ApplicationController
 
     def show
 		@blog = Blog.joins(:user).where('users.status = 1 and blogs.username = "' + params["id"] +'"').first
-		if @blog != nil
-			@articles = Article.where("blog_id = #{@blog.id}")
+        if @blog != nil
+			@articles = Article.where("blog_id = #{@blog.id} and articles.status != 0")
 		else
 			redirect_to root
 		end	

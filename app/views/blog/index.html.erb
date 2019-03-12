@@ -37,4 +37,30 @@
             <% end %>
         </div>
     </div>
+    <% if @blog.username? %>
+        <hr/>
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-xs-12">
+                <h1>list articles</h1>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Title</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>                
+                    <% @articles.each do |article| %>
+                        <tr>
+                            <td><%= article.title %></td>
+                            <td><%= article.status == 1? "PUBLIC" : "PRIVATE" %></td>
+                            <td>
+                                <%= link_to content_tag(:i, '', class: 'fa fa-eye'), blog_article_path(@blog.username, article.id) %>
+                                <%= link_to content_tag(:i, '', class: 'fa fa-edit'), edit_blog_article_path(@blog.id, article.id) %>
+                            </td>
+                        </tr>
+                    <% end %>
+                </table>
+                <%= link_to "LIST MORE ARTICLE" , blog_articles_path(@blog.username), {:class => "btn btn-primary"} %>
+            </div>
+        </div>
+    <% end %>     
 </div>  

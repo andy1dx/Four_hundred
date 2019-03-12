@@ -1,18 +1,27 @@
 <%= render "elements/signinheader" %>
 <div class="container theme-showcase" role="main">
-<div class="row">
-    <div class="col-sm-12 col-md-12 col-xs-12">
-        <h1>list articles</h1>
-        <% @articles.each do |article| %>
-            <div class="article_card">
-                <div class="article_title">
-                    
-                </div>
-                <div class="article_action">
-
-                </div>
-            </div>
-        <% end %>
-    </div>
-</div>  
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-xs-12">
+            <h1>list articles</h1>
+            <table class="table table-striped">
+                <tr>
+                    <th>Title</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>                
+                <% @articles.each do |article| %>
+                    <tr>
+                        <td><%= article.title %></td>
+                        <td><%= article.status == 1? "PUBLIC" : "PRIVATE" %></td>
+                        <td>
+                            <%= link_to content_tag(:i, '', class: 'fa fa-eye'), blog_article_path(@blog.username, article.id) %>
+                            <%= link_to content_tag(:i, '', class: 'fa fa-edit'), edit_blog_article_path(@blog.id, article.id) %>
+                            <%= link_to content_tag(:i, '', class: 'fa fa-trash'), blog_article_path(@blog.username, article.id), method: :delete, data: {confirm: 'Are You Sure'}  %>
+                        </td>
+                    </tr>
+                <% end %>
+            </table>
+        </div>
+    </div>  
+<div>
 
