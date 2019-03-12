@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+	before_action :authenticate_user!
 	def list
 		if current_user
 		     @user_id = current_user.id
@@ -59,10 +60,6 @@ class ArticlesController < ApplicationController
 	def show
 
 
-	end
-	
-	def show
-		
 	end
 
 	private def article_params

@@ -1,4 +1,5 @@
 class BlogController < ApplicationController
+    before_action :authenticate_user!
     def index
         if user_signed_in? 
             @check = Blog.find_by(user_id: current_user.id)
