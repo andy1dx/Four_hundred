@@ -301,7 +301,7 @@ Devise.setup do |config|
     # ...
   
     config.omniauth :facebook, '1059014730840429', 'e34a50bd3250975452e55a681f1f6c25', callback_url: "http://localhost:3000/users/auth/facebook/callback"
-    config.omniauth :twitter, 'API key', 'API secret'
+    config.omniauth :twitter, 'EDAs2HZ6FA5nCqnPQ4yJC7aOO', '0Skworr2Whzy7aFrua4FgVX4QXXf4eJ8h7c7AyZCtB2m7G01oD'
   end
   
 end

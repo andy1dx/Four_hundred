@@ -1,17 +1,17 @@
 class ArticlesController < ApplicationController
-	before_action :authenticate_user!
+	before_action :authenticate_user! #autothication for routing
 	def list
-		if current_user
+		if current_user  # checking user
 		     @user_id = current_user.id
 		else
-		    redirect_to new_user_session_path, notice: 'You are not logged in.'
+		    redirect_to new_user_session_path, notice: 'You are not logged in.' #redireting user checking
 		end
 	end
 
 	def index
-		@blog = Blog.joins(:user).where("users.status = 1 and (blogs.url = '#{params["blog_id"]}' or blogs.id = '#{params["blog_id"]}')").first
+		@blog = Blog.joins(:user).where("users.status = 1 and (blogs.url = '#{params["blog_id"]}' or blogs.id = '#{params["blog_id"]}')").first #getting blog data by blog_id or blog_url
 		if @blog != nil
-			@articles = Article.where("blog_id = #{@blog.id} and articles.status != 0")
+			@articles = Article.where("blog_id = #{@blog.id} and articles.status != 0") #getting article that not deleted
 		else
 			redirect_to root
 		end	
@@ -22,24 +22,24 @@ class ArticlesController < ApplicationController
 	end
 
 	def create
-		@blog = Blog.joins(:user).where('users.status = 1 and blogs.url = "' + params["blog_id"] +'"').first
-		@article = Article.new(article_params)
-		@article.blog_id = @blog.id
-		if @article.save()
+		@blog = Blog.joins(:user).where("users.status = 1 and blogs.url = (blogs.url = '#{params["blog_id"]}' or blogs.id = '#{params["blog_id"]}')").first #getting data of active blog y url
+		@article = Article.new(article_params) #making new article data from form
+		@article.blog_id = @blog.id #adding blog id for saving
+		if @article.save() #save data 
 			redirect_to blog_index_path
 		else
-			render 'new'
+			render 'new' #if failed render new to disply errror
 		end
 
 	end
 
 	def update
-		@article = Article.find(params[:id])
-		if(@article.update(article_params))
+		@article = Article.find(params[:id]) #getting data that want to udate
+		if(@article.update(article_params)) # checking updating data
 			@blog = Blog.joins(:user).where('users.status = 1 and blogs.id = "' + params["blog_id"] +'"').first
 			redirect_to blog_articles_path(@article.blog_id)
         else
-            render 'edit'
+            render 'edit' #if data is false open edit again
         end 
 	end
 
