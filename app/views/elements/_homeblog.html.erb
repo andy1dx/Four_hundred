@@ -1,0 +1,34 @@
+<div class="container-fliud home_bg">
+    <%= image_tag("home-bg.jpg", :class => "img-responsive") %>
+    <div class="label-home">
+        <h1>Four Hundred</h1>
+        <h5>Express your self and share to the world</h5>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2 col-md-1 mx-auto">
+        </div>
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <% @blogs.each do |blog| %>
+                <div class="blog_wrapper">
+                    <%= link_to public_blog_path(blog.url) do%>
+                        <h3 class="blog_title">
+                            <%= blog.title %>
+                        </h3>
+                        <p class="blog_des">
+                            <%= blog.description %>
+                        </p>
+                    <% end %>
+                    <p class="blog_author">
+                        Author By <span><%= blog.username %></span>
+                    </p>
+                </div>
+                <hr />
+            <% end %>
+        </div>
+        <div class="col-lg-2 col-md-1 mx-auto">
+        </div>
+    </div>
+</div>

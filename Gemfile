@@ -35,6 +35,12 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+gem 'bootstrap-sass'
+gem 'sassc-rails', '>= 2.1.0'
+gem 'jquery-rails'
+
+gem 'devise'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -59,4 +65,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #adding umniauth for twitter and facebook
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
-
+gem 'wysiwyg-rails'
+gem 'font-awesome-sass', '~> 5.6.1'
+gem 'mini_magick'
+gem 'carrierwave', '~> 1.0'
+gem 'file_validators'

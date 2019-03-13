@@ -1,0 +1,91 @@
+<% if user_signed_in? %>
+    <%= render "elements/signinheader" %>
+<% else %>
+    <%= render "elements/loginheader" %>
+<% end %>
+<div class="container theme-showcase  main-body" role="main">
+    <div class="row">
+        <div class="col-lg-2 col-md-1 mx-auto">
+        </div>
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="article-title">
+                <%= @article.title %>
+                <% if user_signed_in? %>
+                    <div class="like_form">
+                        <% if @like != nil %>                        
+                            <%= link_to "いいね", blog_article_like_path(@blog.url, @article.id, @like.id), method: :delete, data: {confirm: 'Are You Sure'} , :class => 'btn btn-unlike'  %>
+                            <span class="count_like"><%= @count %></span>     
+                        <% else %>            
+                            <%= link_to "いいね", blog_article_like_index_path(@blog.url, @article.id), method: :post, :class => 'btn btn-like'   %>  
+                            <span class="count_like"><%= @count %></span>     
+                        <% end %>            
+                    </div>
+                <% else %>
+                    <div class="like_form">
+                        <a  onclick="alert('ログインお願いします！');return false;" class="btn btn-like" rel="nofollow"  href="#">いいね</a>
+                        <span class="count_like"><%= @count %></span>     
+                    </div>
+                <% end %>
+            </div>
+            <div class="article-body">
+                <%= @article.body.html_safe %>
+            </div>
+            <div class="article_author">
+                <div>
+                    作者 <span><%= @blog.username %></span> 
+                    公開日 <%= @article.created_at.strftime('%Y-%m-%d')  %>
+                </div>
+                <div class="pull-right">
+                </div>
+            </div>
+            <div class="comment_head">
+                コメント :
+            </div>
+            <div class="article_comment">
+                <% @comments.each do |comment| %>
+                    <div class="row">
+                        <div class="comment col-md-12">
+                            <div class="comment_avatar pull-left">
+                            <% if comment.avatar? && comment.avatar != '' %>  
+                                <%= image_tag(comment.user.avatar.url , :class => "img-responsive") %>
+                            <% else %>    
+                                <%= image_tag('blank_profile.png' , :class => "img-responsive") %>
+                            <% end %>                            
+                            </div>
+                            <div class="comment_wrapper  ">
+                                <div class="comment_body">
+                                    <%= comment.body %>
+                                </div>
+                            </div>
+                            <div class="comment_user">
+                                Comment By: <%= comment.username %>
+                            </div>    
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+            <% if user_signed_in? %>
+                <%= form_for(:comment, :url => blog_article_comment_index_path(@article.blog_id , @article.id)) do |f| %>
+                    <%= f.hidden_field :user_id %>
+                    <%= f.hidden_field :article_id %>
+                    <div class="input-group">
+                        <%= f.text_field(:body, {:class => "form-control"}) %>
+                        <div class="input-group-btn">
+                            <%= f.submit "コメント" , :class => 'btn btn-primary'  %>
+                        </div>
+                    </div>
+                    
+                <% end %>
+            <% else %>
+                <div class="please_signin alert alert-warning">
+                    コメントしたい場合はログインしてください
+                </div>
+            <% end %>
+            
+        </div>
+        <div class="col-lg-2 col-md-1 mx-auto">
+        </div>
+    </div>
+
+</div>  
+

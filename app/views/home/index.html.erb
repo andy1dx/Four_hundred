@@ -1,0 +1,6 @@
+<% if user_signed_in? %>
+    <%= render "elements/signinheader" %>
+<% else %>
+    <%= render "elements/loginheader" %>
+<% end %>
+<%= render "elements/homeblog" %>
