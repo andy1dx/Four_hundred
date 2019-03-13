@@ -1,8 +1,8 @@
 <%= render "elements/signinheader" %>
-<div class="container theme-showcase" role="main">
+<div class="container theme-showcase  main-body" role="main">
 <div class="row">
     <div class="col-sm-12 col-md-12 col-xs-12">
-        <h1>Add Article</h1>
+        <h1>記事編集</h1>
         <%= form_for :article, url: blog_article_path(@article), method: :patch  do |f| %>   
             <% if @article.errors.any? %>
                 <% @article.errors.full_messages.each do |msg| %>
@@ -10,11 +10,11 @@
                 <% end %>
             <% end %>
             <div class="form-group">
-                <%= f.label :title %><br>
+                <%= f.label :タイトル %><br>
                 <%= f.text_field(:title, {:class => "form-control"}) %>
             </div>
             <div class="form-group">
-                <%= f.label :body %><br>
+                <%= f.label :内容 %><br>
                 <%= f.text_area(:body, {:class => "form-control"}) %>
             </div>
             <div class="form-group">

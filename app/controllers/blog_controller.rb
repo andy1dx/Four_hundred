@@ -76,7 +76,7 @@ class BlogController < ApplicationController
     end    
 
     def show
-		@blog = Blog.joins(:user).where('users.status = 1 and blogs.username = "' + params["id"] +'"').first
+		@blog = Blog.joins(:user).where('users.status = 1 and blogs.url = "' + params["id"] +'"').first
         if @blog != nil
 			@articles = Article.where("blog_id = #{@blog.id} and articles.status != 0")
 		else

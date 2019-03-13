@@ -1,0 +1,59 @@
+<% if user_signed_in? %>
+    <%= render "elements/signinheader" %>
+<% else %>
+    <%= render "elements/loginheader" %>
+<% end %>
+<div class="container theme-showcase  main-body" role="main">
+    <div class="row">
+        <div class="col-lg-2 col-md-1 mx-auto">
+        </div>
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="article-title">
+                <%= @article.title %>
+            </div>
+            <div class="article-body">
+                <%= @article.body.html_safe %>
+            </div>
+            <div class="article_author">
+                <div>
+                    作者 <span><%= @blog.username %></span> 
+                    公開日 <%= @article.created_at.strftime('%Y-%m-%d')  %>
+                </div>
+                <div class="pull-right">
+                </div>
+            </div>
+            <div class="comment_head">
+                コメント :
+            </div>
+            <div class="article_comment">
+                <% @comments.each do |comment| %>
+                    <div class="comment">
+                        <div class="comment_body">
+                            <%= comment.body %>
+                        </div>
+                        <div class="comment_user">
+                            Comment By: <%= comment.username %>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+            <% if user_signed_in? %>
+                <%= form_for(:comment, :url => blog_article_comment_index_path(@article.blog_id , @article.id)) do |f| %>
+                    <%= f.hidden_field :user_id %>
+                    <%= f.hidden_field :article_id %>
+                    <%= f.text_field(:body, {:class => "form-control"}) %>
+                    <%= f.submit "登録" , :class => 'btn btn-primary'  %>
+                <% end %>
+            <% else %>
+                <div class="please_signin">
+                    コメントしたい場合はログインしてください
+                </div>
+            <% end %>
+            
+        </div>
+        <div class="col-lg-2 col-md-1 mx-auto">
+        </div>
+    </div>
+
+</div>  
+

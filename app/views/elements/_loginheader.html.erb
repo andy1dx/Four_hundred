@@ -1,5 +1,5 @@
 <!-- Fixed navbar -->
-    <nav class="navbar navbar-inverse bs-docs-nav">
+    <nav class="navbar navbar-inverse navbar-fixed-top bs-docs-nav">
       <div class="container">
         <div class="navbar-header responsive-logo">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -10,5 +10,19 @@
           </button>
           <a class="navbar-brand" href="/"><%= image_tag("logo.png") %></a>
         </div>
+        <ul class="nav navbar-nav navbar-right navbar-sign-in">
+          <li><%= link_to 'Twitterログイン', user_twitter_omniauth_authorize_path %></li>
+          <li><%= link_to 'facebookログイン', user_facebook_omniauth_authorize_path %></li>        
+          <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ログイン<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <%= render "elements/signinform" %>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">サインアップ<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <%= render "elements/signupform" %>
+            </ul>
+          </li>
+        </ul>
       </div>
     </nav>

@@ -9,7 +9,7 @@ class ArticlesController < ApplicationController
 	end
 
 	def index
-		@blog = Blog.joins(:user).where("users.status = 1 and (blogs.username = #{params["blog_id"]} or blogs.id = #{params["blog_id"]})").first
+		@blog = Blog.joins(:user).where("users.status = 1 and (blogs.url = '#{params["blog_id"]}' or blogs.id = '#{params["blog_id"]}')").first
 		if @blog != nil
 			@articles = Article.where("blog_id = #{@blog.id} and articles.status != 0")
 		else
@@ -22,7 +22,7 @@ class ArticlesController < ApplicationController
 	end
 
 	def create
-		@blog = Blog.joins(:user).where('users.status = 1 and blogs.username = "' + params["blog_id"] +'"').first
+		@blog = Blog.joins(:user).where('users.status = 1 and blogs.url = "' + params["blog_id"] +'"').first
 		@article = Article.new(article_params)
 		@article.blog_id = @blog.id
 		if @article.save()

@@ -1,5 +1,5 @@
 <!-- Fixed navbar -->
-    <nav class="navbar navbar-inverse bs-docs-nav">
+    <nav class="navbar navbar-inverse navbar-fixed-top bs-docs-nav">
       <div class="container">
         <div class="navbar-header responsive-logo">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -10,11 +10,9 @@
           </button>
           <a class="navbar-brand" href="/"><%= image_tag("logo.png") %></a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav pull-right">
-            <li><%= link_to 'My Blog', blog_index_path %></li>
-            <li><%= link_to 'Sign Out', destroy_user_session_path %></li>
-          </ul>
-        </div><!--/.nav-collapse -->
+        <ul class="nav navbar-nav navbar-right navbar-sign-in">
+            <li><%= link_to 'ブロック', blog_index_path %></li>
+            <li><%= link_to 'ログアウト', destroy_user_session_path %></li>
+        </ul>
       </div>
-    </nav>
+    </nav><!-- Fixed navbar -->

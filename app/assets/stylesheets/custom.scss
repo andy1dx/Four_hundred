@@ -90,3 +90,102 @@
 .pt-15{
     padding-top: 15px;
 }
+
+.blog_wrapper>a>.blog_title {
+    font-size: 36px;
+    font-weight: 800;
+    font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    color: #212529;
+}
+.blog_wrapper>a>.blog_des{
+    font-weight: 300;
+    margin: 0 0 10px;
+    color: #212529;
+    font-size: 1.75rem;
+}
+.blog_wrapper>a:hover>.blog_title, .blog_wrapper>a:hover, .blog_wrapper>a:hover>.blog_des {
+   color: #0085a1;
+   text-decoration: none;
+}
+.blog_wrapper>.blog_author{
+    font-size: 18px;
+    margin-top: 0;
+    color: #868e96;
+    font-family: Verdana, Geneva, sans-serif;
+}
+
+.blog_wrapper>.blog_author>span{
+    color: #212529;;
+}
+.blog_wrapper>hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(0,0,0,.1);
+}
+.home_bg{
+    position: relative;
+    max-height: 530px;
+    overflow: hidden;
+}
+.label-home {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    height: 100%;
+    background-color: rgba(0,0,0,0.3);
+}
+.label-home>h1 {
+    margin-top: 250px;
+    font-size: 40pt;
+    font-weight: bold;
+    font-family: Verdana, Geneva, sans-serif;
+}
+
+.label-home>h5 {
+    font-size: 20pt;
+    font-family: Verdana, Geneva, sans-serif;
+}
+.navbar-sign-in, .navbar-sign-in>li{
+    height: 76px;
+}
+.navbar-sign-in > li > a {
+    padding-top: 28px;
+    padding-bottom: 28px;
+}
+.navbar-sign-in > li > .dropdown-menu {
+    padding: 15px;
+    min-width: 250px;
+    border-radius: 6px !important;
+}
+.navbar{
+    overflow: inherit;
+}
+.main-body{
+    padding-top: 100px;
+}
+.ml-auto, .mx-auto {
+    margin-left: auto!important;
+    margin-right: auto!important;
+}
+.article_wrapper>a {
+    display: block;
+    overflow: hidden;
+    max-height: 174px;
+}
+.article-title {
+    font-size: 25pt;
+    font-weight: bold;
+    text-align: center;
+}
+.article_comment {
+    position: relative;
+    padding: 5px 15px;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    margin-top :15px; 
+}
