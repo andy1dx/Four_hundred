@@ -10,6 +10,22 @@
         <div class="col-lg-8 col-md-10 mx-auto">
             <div class="article-title">
                 <%= @article.title %>
+                <% if user_signed_in? %>
+                    <div class="like_form">
+                        <% if @like != nil %>                        
+                            <%= link_to "いいね", blog_article_like_path(@blog.url, @article.id, @like.id), method: :delete, data: {confirm: 'Are You Sure'} , :class => 'btn btn-unlike'  %>
+                            <span class="count_like"><%= @count %></span>     
+                        <% else %>            
+                            <%= link_to "いいね", blog_article_like_index_path(@blog.url, @article.id), method: :post, :class => 'btn btn-like'   %>  
+                            <span class="count_like"><%= @count %></span>     
+                        <% end %>            
+                    </div>
+                <% else %>
+                    <div class="like_form">
+                        <a  onclick="alert('ログインお願いします！');return false;" class="btn btn-like" rel="nofollow"  href="#">いいね</a>
+                        <span class="count_like"><%= @count %></span>     
+                    </div>
+                <% end %>
             </div>
             <div class="article-body">
                 <%= @article.body.html_safe %>
@@ -27,12 +43,23 @@
             </div>
             <div class="article_comment">
                 <% @comments.each do |comment| %>
-                    <div class="comment">
-                        <div class="comment_body">
-                            <%= comment.body %>
-                        </div>
-                        <div class="comment_user">
-                            Comment By: <%= comment.username %>
+                    <div class="row">
+                        <div class="comment col-md-12">
+                            <div class="comment_avatar pull-left">
+                            <% if comment.avatar? && comment.avatar != '' %>  
+                                <%= image_tag(comment.user.avatar.url , :class => "img-responsive") %>
+                            <% else %>    
+                                <%= image_tag('blank_profile.png' , :class => "img-responsive") %>
+                            <% end %>                            
+                            </div>
+                            <div class="comment_wrapper  ">
+                                <div class="comment_body">
+                                    <%= comment.body %>
+                                </div>
+                            </div>
+                            <div class="comment_user">
+                                Comment By: <%= comment.username %>
+                            </div>    
                         </div>
                     </div>
                 <% end %>
@@ -41,11 +68,16 @@
                 <%= form_for(:comment, :url => blog_article_comment_index_path(@article.blog_id , @article.id)) do |f| %>
                     <%= f.hidden_field :user_id %>
                     <%= f.hidden_field :article_id %>
-                    <%= f.text_field(:body, {:class => "form-control"}) %>
-                    <%= f.submit "登録" , :class => 'btn btn-primary'  %>
+                    <div class="input-group">
+                        <%= f.text_field(:body, {:class => "form-control"}) %>
+                        <div class="input-group-btn">
+                            <%= f.submit "コメント" , :class => 'btn btn-primary'  %>
+                        </div>
+                    </div>
+                    
                 <% end %>
             <% else %>
-                <div class="please_signin">
+                <div class="please_signin alert alert-warning">
                     コメントしたい場合はログインしてください
                 </div>
             <% end %>

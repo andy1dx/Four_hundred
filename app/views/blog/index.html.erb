@@ -30,7 +30,7 @@
             </div>
         <% end %>
         </div>
-        <div class="col-sm-8 col-md-8 col-xs-12">
+        <div class="col-sm-8 col-md-8 col-xs-12 for_blog">
             <%= form_for :blog, :html => { :multipart => true }, url: blog_index_path do |f| %>   
                 <% if @success != nil %>                
                     <% if @success == true %>
@@ -52,7 +52,10 @@
                 </p>
                 <p>
                     <%= f.label :url %><br>
-                    <%= f.text_field(:url, {:class => "form-control"}) %>
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon3">https://example.com/public/</span>
+                            <%= f.text_field(:url, {:class => "form-control"}) %>
+                        </div>
                 </p>
                 <p>
                     <%= f.label :ユーザー名 %><br>
@@ -68,7 +71,8 @@
         <hr/>
         <div class="row">
             <div class="col-sm-12 col-md-12 col-xs-12">
-                <h1>記事一覧</h1>
+                <%= link_to '新しい記事登録' , new_blog_article_path(@blog.url) , :class => "btn btn-primary pull-right" %>
+                <h1>記事一覧</h1>        
                 <table class="table table-striped">
                     <tr>
                         <th>タイトル</th>
@@ -82,6 +86,7 @@
                             <td>
                                 <%= link_to content_tag(:i, '', class: 'fa fa-eye'), blog_article_path(@blog.url, article.id) %>
                                 <%= link_to content_tag(:i, '', class: 'fa fa-edit'), edit_blog_article_path(@blog.id, article.id) %>
+                                <%= link_to content_tag(:i, '', class: 'fa fa-trash'), blog_article_path(@blog.url, article.id), method: :delete, data: {confirm: 'Are You Sure'}  %>
                             </td>
                         </tr>
                     <% end %>

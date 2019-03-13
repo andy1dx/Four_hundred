@@ -3,6 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_one :blogs 
   has_many :comments
+  has_many :likes
+  
   mount_uploader :avatar, AvatarUploader
   validates :avatar, :file_size => { :less_than => 0.5.megabytes.to_i }
 

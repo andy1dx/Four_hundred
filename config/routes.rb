@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :blog do
     resources :articles do
       resources :comment
+      resources :like
     end
   end
   post 'avatar', to: 'blog#avatar', as: 'save_avatar'

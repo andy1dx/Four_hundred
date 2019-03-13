@@ -30,6 +30,18 @@ class BlogController < ApplicationController
     def create
         #render plain: params[:post].inspect
         @blog = Blog.find_by(user_id: current_user.id)
+        if user_signed_in? 
+            @userImage = User.find(current_user.id)
+
+            @check = Blog.find_by(user_id: current_user.id)
+            if @check != nil
+                 @articles = Article.where("blog_id = #{@blog.id}").order(:created_at).limit(10)
+            else
+                @articles = []
+            end
+        else
+            redirect_to root_path
+        end        
         if @blog != nil
             if(@blog.update(blog_params))
                 @success = true;
