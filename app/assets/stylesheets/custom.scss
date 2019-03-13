@@ -250,3 +250,21 @@ a.btn.btn-unlike {
     bottom: 10px;
     right: 10px;
 }
+
+td.action-data>a {
+    margin-right: 10px;
+    font-size: 20px;
+}
+td.action-data>a>.fa-trash {
+    color:#f44242;
+}
+
+td.action-data>a>.fa-eye {
+    color:#2b44ff;
+}
+td.action-data>a>.fa-comments {
+    color:#ffad2a;
+}
+td.action-data>a>.fa-edit {
+    color:#05ff26;
+}
