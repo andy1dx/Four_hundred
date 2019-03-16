@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
 	before_action :authenticate_user! #autothication for routing
+
 	def list
 		if current_user  # checking user
 		     @user_id = current_user.id
@@ -22,7 +23,7 @@ class ArticlesController < ApplicationController
 	end
 
 	def create
-		@blog = Blog.joins(:user).where("users.status = 1 and blogs.url = (blogs.url = '#{params["blog_id"]}' or blogs.id = '#{params["blog_id"]}')").first #getting data of active blog y url
+		@blog = Blog.joins(:user).where("users.status = 1 and (blogs.url = '#{params["blog_id"]}' or blogs.id = '#{params["blog_id"]}')").first #getting data of active blog y url
 		@article = Article.new(article_params) #making new article data from form
 		@article.blog_id = @blog.id #adding blog id for saving
 		if @article.save() #save data 

@@ -115,6 +115,12 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     jwt (2.1.0)
+    kaminari (0.17.0)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
+    kaminari-bootstrap (3.0.1)
+      kaminari (>= 0.13.0)
+      rails
     loofah (2.2.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -273,6 +279,8 @@ DEPENDENCIES
   font-awesome-sass (~> 5.6.1)
   jbuilder (~> 2.5)
   jquery-rails
+  kaminari (~> 0.17.0)
+  kaminari-bootstrap (~> 3.0.1)
   mini_magick
   mysql2 (>= 0.4.4, < 0.6.0)
   omniauth-facebook
@@ -289,7 +297,7 @@ DEPENDENCIES
   wysiwyg-rails
 
 RUBY VERSION
-   ruby 2.4.5p335
+   ruby 2.5.3p105
 
 BUNDLED WITH
    2.0.1
