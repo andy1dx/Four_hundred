@@ -39,6 +39,7 @@ class Admins::HomeController < ApplicationController
     def inactivate
         @user = User.find(params[:id])
         if(@user.update(:status => 0))
+            UsersMailer.inactive(@user).deliver
 			redirect_to admin_home_path
         else
 			redirect_to admin_home_path
@@ -47,6 +48,7 @@ class Admins::HomeController < ApplicationController
 
     def activate
         @user = User.find(params[:id])
+        UsersMailer.active(@user).deliver
         if(@user.update(:status => 1))
 			redirect_to admin_home_path
         else

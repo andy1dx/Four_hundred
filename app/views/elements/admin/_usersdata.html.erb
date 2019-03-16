@@ -13,13 +13,13 @@
                         <td><%= user.email %></td>
                         <td><%= user.blog_username %></td>
                         <td><%= user.blog_url %></td>
-                        <td><%= user.status == 1? "活動中" : "非活動中" %></td>
+                        <td><%= user.status == 1? "活動的" : "非活動中" %></td>
                         <td class="action-data">
                             <%= link_to content_tag(:i, '', class: 'fa fa-eye'), admin_blog_path(user.blog_id) %>
                             <% if user.status == 1 %>
                                 <%= link_to "非活動中", admin_inactivate_path(user.id), class:"btn btn-danger", method: :post, data: {confirm: 'Are You Sure'}  %>
                             <% else %>
-                                <%= link_to "活動中", admin_activate_path(user.id), class:"btn btn-primary", method: :post, data: {confirm: 'Are You Sure'}  %>
+                                <%= link_to "活動的", admin_activate_path(user.id), class:"btn btn-primary", method: :post, data: {confirm: 'Are You Sure'}  %>
                             <% end %>
 
                         </td>
