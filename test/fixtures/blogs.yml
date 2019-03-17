@@ -1,12 +1,14 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  id: 1
   title: MyString
   description: MyText
   url: MyString
   user: one
 
 two:
+  id: 2
   title: MyString
   description: MyText
   url: MyString
