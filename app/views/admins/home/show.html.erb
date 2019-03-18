@@ -1,0 +1,15 @@
+<%= render "elements/adminheader" %>
+<div class="container theme-showcase  main-body" role="main">
+    <ul class="nav nav-tabs">
+        <li><%= link_to 'すべて', admin_home_path %></li>
+        <% if params['id'] == "0" %>
+            <li ><%= link_to '活動中', admin_status_path("1") %></li>
+            <li class="active"><%= link_to '非活動中', admin_status_path("0") %></li>
+        <% else %>
+            <li class="active"><%= link_to '活動中', admin_status_path("1") %></li>
+            <li><%= link_to '非活動中', admin_status_path("0") %></li>
+        <% end %>
+
+    </ul>
+    <%= render "elements/admin/usersdata" %>
+</div>

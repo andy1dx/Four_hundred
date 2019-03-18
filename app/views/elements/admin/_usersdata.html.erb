@@ -1,0 +1,30 @@
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-xs-12">
+            <table class="table table-striped">
+                <tr>
+                    <th>メール</th>
+                    <th>ユーザー名</th>
+                    <th>URL</th>
+                    <th>ステータス</th>
+                    <th>Action</th>
+                </tr>                
+                <% @users.each do |user| %>
+                    <tr>
+                        <td><%= user.email %></td>
+                        <td><%= user.blog_username %></td>
+                        <td><%= user.blog_url %></td>
+                        <td><%= user.status == 1? "活動的" : "非活動中" %></td>
+                        <td class="action-data">
+                            <%= link_to content_tag(:i, '', class: 'fa fa-eye'), admin_blog_path(user.blog_id) %>
+                            <% if user.status == 1 %>
+                                <%= link_to "非活動中", admin_inactivate_path(user.id), class:"btn btn-danger", method: :post, data: {confirm: 'Are You Sure'}  %>
+                            <% else %>
+                                <%= link_to "活動的", admin_activate_path(user.id), class:"btn btn-primary", method: :post, data: {confirm: 'Are You Sure'}  %>
+                            <% end %>
+
+                        </td>
+                    </tr>
+                <% end %>
+            </table>
+        </div>
+    </div>

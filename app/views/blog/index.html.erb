@@ -7,7 +7,7 @@
             <% if @successImage == true %>
                 <div class="alert alert-success">AVATAR UPLLOAD SUCCESS</div>
             <% else %>  
-                <div class="alert alert-danger"><%= @successImage %> </div>
+                <div class="alert alert-danger"><%= @successImage %></div>
             <% end %>    
         <% end %>  
         <%= form_for :user, url: save_avatar_path do |f| %>

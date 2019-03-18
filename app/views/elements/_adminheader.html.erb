@@ -1,1 +1,17 @@
-<div>sign in header</div>
+<!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top bs-docs-nav">
+      <div class="container">
+        <div class="navbar-header responsive-logo">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><%= image_tag("logo.png") %></a>
+        </div>
+        <ul class="nav navbar-nav navbar-right navbar-sign-in">
+            <li><%= link_to 'ログアウト', destroy_admin_session_path %></li>
+        </ul>
+      </div>
+    </nav><!-- Fixed navbar -->

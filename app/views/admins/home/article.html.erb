@@ -1,0 +1,26 @@
+<%= render "elements/adminheader" %>
+<div class="container theme-showcase  main-body" role="main">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-xs-12">
+            <h1>記事タイトル：<%= @article.title %></h1>
+        </div>
+        <div class="col-sm-12 col-md-12 col-xs-12">
+        <table class="table table-striped">
+            <tr>
+                <th>ユーザー名</th>
+                <th>内容</th>
+                <th>Action</th>
+            </tr>                
+            <% @comments.each do |comment| %>
+                <tr>
+                    <td><%= comment.username %></td>
+                    <td><%= comment.body %></td>
+                    <td class="action-data">
+                        <%= link_to content_tag(:i, '', class: 'fa fa-trash'), admin_destroy_comment_path(@blog.id, @article.id, comment.id), method: :delete, data: {confirm: 'Are You Sure'}  %>
+                    </td>
+                </tr>
+            <% end %>
+        </table>
+    </div>        
+    </div>
+</div>

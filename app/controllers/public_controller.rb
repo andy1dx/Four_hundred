@@ -1,8 +1,10 @@
 class PublicController < ApplicationController
+    PER = 1
     def index
         @blog = Blog.joins(:user).where('users.status = 1 and blogs.url = "' + params["blog_id"] +'"').first
         if @blog != nil
             @articles = Article.where("blog_id = #{@blog.id} and articles.status != 0")
+            @articles = Kaminari.paginate_array(@articles).page(params[:page]).per(1)
             if  @articles.empty?
                 redirect_to root_path
             end

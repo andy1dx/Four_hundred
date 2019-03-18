@@ -1,0 +1,27 @@
+<%= render "elements/adminheader" %>
+<div class="container theme-showcase  main-body" role="main">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-xs-12">
+            <table class="table table-striped">
+                <tr>
+                    <th>タイトル</th>
+                    <th>ステータス</th>
+                    <th>Action</th>
+                </tr>                
+                <% @articles.each do |article| %>
+                    <tr>
+                        <td><%= article.title %></td>
+                        <td><%= article.status == 1? "PUBLIC" : "PRIVATE" %></td>
+                        <td class="action-data">
+                            <%= link_to content_tag(:i, '', class: 'fa fa-eye'), public_article_path(@blog.url, article.id) %>
+                            <%= link_to content_tag(:i, '', class: 'fa fa-trash'), admin_destroy_article_path(@blog.id, article.id), method: :delete, data: {confirm: 'Are You Sure'}  %>
+                            <%= link_to content_tag(:i, '', class: 'fa fa-comments'), admin_article_path(@blog.id, article.id)  %>                            
+                        </td>
+                    </tr>
+                <% end %>
+            </table>
+        </div>
+    </div>
+
+    
+</div>
